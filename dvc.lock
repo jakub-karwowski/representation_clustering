@@ -1,0 +1,26 @@
+schema: '2.0'
+stages:
+  prepare:
+    cmd: "python -u scripts/download_wikics.py \n"
+    deps:
+    - path: scripts/download_wikics.py
+      hash: md5
+      md5: 3073ae0709d0d2169058c6eeccd17a90
+      size: 340
+    outs:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647

@@ -1,0 +1,12 @@
+stages:
+  prepare:
+    cmd: > 
+      python -u scripts/download_wikics.py 
+    deps:
+      - scripts/download_wikics.py
+    outs:
+      - data/WikiCS/processed/data_undirected.pt
+      - data/WikiCS/processed/pre_filter.pt
+      - data/WikiCS/processed/pre_transform.pt
+      - data/WikiCS/raw/data.json
+    

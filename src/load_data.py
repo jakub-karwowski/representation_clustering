@@ -1,6 +1,7 @@
 from typing import Optional
 from torch_geometric.datasets import WikiCS
 from torch_geometric.data import Data
+from torch_geometric.data.lightning import LightningNodeData
 import pytorch_lightning as pl
 import torch
 
@@ -44,7 +45,7 @@ def load_dataset(name: str, statistics: bool = False) -> Optional[dict]:
 
 def get_dataset_lightning_data(name: str) -> pl.LightningDataModule:
     if name == "WikiCS":
-        return pl.LightningNodeData(
+        return LightningNodeData(
             data=WikiCS(root="./data/WikiCS"),
             loader='full'
         )

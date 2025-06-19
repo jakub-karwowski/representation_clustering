@@ -17,6 +17,6 @@ torchvision==0.21
 
 torch_geometric==2.6.1
 
-dvc==3.60.1
+dvc<=3.60.1
 umap-learn
 tabulate

@@ -1,4 +1,4 @@
-DEVICE = cpu
+DEVICE = gpu
 PORT = 8888
 GPU = all
 

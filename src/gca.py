@@ -4,6 +4,7 @@ import torch.nn as nn
 from torch_geometric.data import Data
 from torch_geometric.utils import degree
 from torch_geometric.nn import GATConv
+import torch.nn.functional as F
 
 
 def drop_edges_degree_centrality(edge_index: torch.Tensor, deg: torch.Tensor, pe_remove: float, pe_cutoff: float) -> torch.Tensor:
@@ -80,19 +81,24 @@ class GCABase(pl.LightningModule):
 
     def info_nce_loss(self, z_i: torch.Tensor, z_j: torch.Tensor) -> torch.Tensor:
         batch_size = z_i.size(0)
+        z_i = F.normalize(z_i, p=2, dim=1)
+        z_j = F.normalize(z_j, p=2, dim=1)
         pos_indices_i = torch.arange(batch_size, device=z_i.device)
         pos_indices_j = torch.arange(
             batch_size, 2*batch_size, device=z_i.device)
 
-        sim_full = torch.cat([z_i, z_j]) @  torch.cat([z_i, z_j]).T
+        embs =  torch.cat([z_i, z_j], dim=0)
+        sim_full = embs @ embs.T
         sim_full = torch.exp(sim_full / self.temp)
-        positive_sim = sim_full[pos_indices_i, pos_indices_j]
+        positive_sim = torch.cat([sim_full[pos_indices_i, pos_indices_j], sim_full[pos_indices_j, pos_indices_i]], dim=0)
         zero_diag = torch.ones_like(
             sim_full) - torch.eye(sim_full.size(0), device=sim_full.device)
         sim_full = sim_full * zero_diag
         negative_sim = sim_full.sum(dim=1)
         loss = -torch.log(positive_sim / negative_sim)
-        return loss.mean()
+        loss = loss.mean()
+        print('loss', loss)
+        return loss
 
     def training_step(self, batch: Data, batch_idx: int) -> dict:
         (x_a, edge_index_a), (x_b, edge_index_b) = self.augmenter(batch)
@@ -101,6 +107,9 @@ class GCABase(pl.LightningModule):
         loss = self.info_nce_loss(z_a, z_b)
 
         self.log('train/loss', loss.item(), on_epoch=True, on_step=False)
+        return {
+            'loss': loss,
+        }
 
     def configure_optimizers(self):
         return torch.optim.AdamW(

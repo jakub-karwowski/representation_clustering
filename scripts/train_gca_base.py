@@ -10,13 +10,15 @@ def main():
     from src.gca import GCABase
     from src.gca import GATEncoderBN
 
-    model = GCABase(GATEncoderBN(in_dim=300, hidden_dim=256, out_dim=128))
+    model = GCABase(
+        encoder=GATEncoderBN(in_dim=300, hidden_dim=256, out_dim=128),
+        lr=0.0005)
 
     trainer = pl.Trainer(
         precision=16,
         devices=1,
-        max_epochs=5,
-        accelerator="cpu",
+        max_epochs=50,
+        accelerator="gpu",
         logger=pl.loggers.TensorBoardLogger(
             save_dir="./models/logs/",
             name="gca_base",

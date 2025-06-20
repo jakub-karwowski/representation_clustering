@@ -1,14 +1,93 @@
 wikics:
   train_stage:
-    lr: 0.01
-    weight_decay: 5e-4
-    max_epochs: 50
-    input_dim: 300
-    hidden_dim: 256
-    output_dim: 128
-    version: 1.0
+    train_stage_model_0:
+      encoder: gate
+      lr: 0.01
+      weight_decay: 5e-4
+      max_epochs: 50
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 128
+      version: 1.0
+    train_stage_model_1:
+      encoder: gate
+      lr: 0.01
+      weight_decay: 5e-4
+      max_epochs: 50
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 256
+      version: 1.0
+    train_stage_model_2:
+      encoder: gate
+      lr: 0.01
+      weight_decay: 5e-4
+      max_epochs: 50
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 64
+      version: 1.0
+    train_stage_model_3:
+      encoder: gcn
+      lr: 0.01
+      weight_decay: 5e-4
+      max_epochs: 50
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 128
+      version: 1.0
+    train_stage_model_4:
+      encoder: gcn
+      lr: 0.01
+      weight_decay: 5e-4
+      max_epochs: 50
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 256
+      version: 1.0
+    train_stage_model_5:
+      encoder: gcn
+      lr: 0.01
+      weight_decay: 5e-4
+      max_epochs: 50
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 64
+      version: 1.0
   embed_stage:
-    input_dim: 300
-    hidden_dim: 256
-    output_dim: 128
-    version: 1.0
+    embed_stage_model_0:
+      encoder: gate
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 128
+      version: 1.0
+    embed_stage_model_1:
+      encoder: gate
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 256
+      version: 1.0
+    embed_stage_model_2:
+      encoder: gate
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 64
+      version: 1.0
+    embed_stage_model_3:
+      encoder: gcn
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 128
+      version: 1.0
+    embed_stage_model_4:
+      encoder: gcn
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 256
+      version: 1.0
+    embed_stage_model_5:
+      encoder: gcn
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 64
+      version: 1.0

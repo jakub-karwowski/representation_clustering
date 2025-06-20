@@ -10,31 +10,38 @@ stages:
       - data/WikiCS/processed/pre_transform.pt
       - data/WikiCS/raw/data.json
   train:
-    cmd: > 
-      python -u scripts/train_gca_base.py 
-    deps:
-      - scripts/train_gca_base.py
-      - data/WikiCS/processed/data_undirected.pt
-      - data/WikiCS/processed/pre_filter.pt
-      - data/WikiCS/processed/pre_transform.pt
-      - data/WikiCS/raw/data.json
-    params:
-      - wikics.train_stage
-    outs:
-      - models/gca_${wikics.train_stage.output_dim}_${wikics.train_stage.version}.pt:
-          cache: false
+    foreach: ${wikics.train_stage}
+    do:
+      cmd: > 
+        python -u scripts/train_gca_base.py 
+        --config
+        ${key}
+      deps:
+        - scripts/train_gca_base.py
+        - data/WikiCS/processed/data_undirected.pt
+        - data/WikiCS/processed/pre_filter.pt
+        - data/WikiCS/processed/pre_transform.pt
+        - data/WikiCS/raw/data.json
+      params:
+        - wikics.train_stage.${key}
+      outs:
+        - models/gca_${item.encoder}_${item.output_dim}_${item.version}.pt:
+            cache: false
   embed:
-    cmd: > 
-      python -u scripts/produce_embedings_gca_base.py 
-    deps:
-      - scripts/produce_embedings_gca_base.py
-      - models/gca_${wikics.train_stage.output_dim}_${wikics.train_stage.version}.pt
-      - data/WikiCS/processed/data_undirected.pt
-      - data/WikiCS/processed/pre_filter.pt
-      - data/WikiCS/processed/pre_transform.pt
-      - data/WikiCS/raw/data.json
-    params:
-      - wikics.embed_stage
-    outs:
-      - data/embeddings/node_embeddings_gca_${wikics.embed_stage.output_dim}_${wikics.embed_stage.version}.pt:
-          cache: false
+    foreach: ${wikics.embed_stage}
+    do:
+      cmd: > 
+        python -u scripts/produce_embedings_gca_base.py 
+        --config ${key}
+      deps:
+        - scripts/produce_embedings_gca_base.py
+        - models/gca_${item.encoder}_${item.output_dim}_${item.version}.pt
+        - data/WikiCS/processed/data_undirected.pt
+        - data/WikiCS/processed/pre_filter.pt
+        - data/WikiCS/processed/pre_transform.pt
+        - data/WikiCS/raw/data.json
+      params:
+        - wikics.embed_stage.${key}
+      outs:
+        - data/embeddings/node_embeddings_gca_${item.encoder}_${item.output_dim}_${item.version}.pt:
+            cache: false

@@ -1,4 +1,5 @@
 import pytorch_lightning as pl
+from sklearn.metrics import roc_auc_score
 import torch
 import torch.nn as nn
 from torch_geometric.data import Data
@@ -61,6 +62,7 @@ class GCABase(pl.LightningModule):
     def __init__(
             self, encoder: nn.Module,
             temp: float = 0.6, lr: float = 0.001,
+            weight_decay: float = 5e-4,
             augmenter: GCAAugumenter = GCAAugumenter(
                 pe_remove=(0.2, 0.4),
                 pe_cutoff=(0.7, 0.7),
@@ -70,8 +72,11 @@ class GCABase(pl.LightningModule):
         super().__init__()
         self.lr = lr
         self.temp = temp
+        self.weight_decay = weight_decay
         self.encoder = encoder
         self.augmenter = augmenter
+
+        self.validation_step_loss = []
 
     def forward(self, x: torch.Tensor, edge_index: torch.Tensor) -> torch.Tensor:
         return self.encoder(x, edge_index)
@@ -87,10 +92,11 @@ class GCABase(pl.LightningModule):
         pos_indices_j = torch.arange(
             batch_size, 2*batch_size, device=z_i.device)
 
-        embs =  torch.cat([z_i, z_j], dim=0)
+        embs = torch.cat([z_i, z_j], dim=0)
         sim_full = embs @ embs.T
         sim_full = torch.exp(sim_full / self.temp)
-        positive_sim = torch.cat([sim_full[pos_indices_i, pos_indices_j], sim_full[pos_indices_j, pos_indices_i]], dim=0)
+        positive_sim = torch.cat(
+            [sim_full[pos_indices_i, pos_indices_j], sim_full[pos_indices_j, pos_indices_i]], dim=0)
         zero_diag = torch.ones_like(
             sim_full) - torch.eye(sim_full.size(0), device=sim_full.device)
         sim_full = sim_full * zero_diag
@@ -115,7 +121,7 @@ class GCABase(pl.LightningModule):
         return torch.optim.AdamW(
             params=self.parameters(),
             lr=self.lr,
-            weight_decay=5e-4,
+            weight_decay=self.weight_decay,
         )
 
 

@@ -9,4 +9,31 @@ stages:
       - data/WikiCS/processed/pre_filter.pt
       - data/WikiCS/processed/pre_transform.pt
       - data/WikiCS/raw/data.json
-    
+  train:
+    cmd: > 
+      python -u scripts/train_gca_base.py 
+    deps:
+      - scripts/train_gca_base.py
+      - data/WikiCS/processed/data_undirected.pt
+      - data/WikiCS/processed/pre_filter.pt
+      - data/WikiCS/processed/pre_transform.pt
+      - data/WikiCS/raw/data.json
+    params:
+      - wikics.train_stage
+    outs:
+      - models/gca_${wikics.train_stage.input_dim}_${wikics.train_stage.version}.pt
+  embed:
+    cmd: > 
+      python -u scripts/embed_gca_base.py 
+    deps:
+      - scripts/embed_gca_base.py
+      - models/gca_${wikics.train_stage.input_dim}_${wikics.train_stage.version}.pt
+      - data/WikiCS/processed/data_undirected.pt
+      - data/WikiCS/processed/pre_filter.pt
+      - data/WikiCS/processed/pre_transform.pt
+      - data/WikiCS/raw/data.json
+    params:
+      - wikics.embed_stage
+    outs:
+      - ./data/embeddings/gca_${wikics.embed_stage.input_dim}_${wikics.embed_stage.version}.pt
+        cache: false

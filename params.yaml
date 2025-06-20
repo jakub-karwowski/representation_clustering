@@ -1,0 +1,14 @@
+wikics:
+  train_stage:
+    lr: 0.01
+    weight_decay: 5e-4
+    max_epochs: 50
+    input_dim: 300
+    hidden_dim: 256
+    output_dim: 128
+    version: 1.0
+  embed_stage:
+    input_dim: 300
+    hidden_dim: 256
+    output_dim: 128
+    version: 1.0

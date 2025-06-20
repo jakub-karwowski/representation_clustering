@@ -103,7 +103,6 @@ class GCABase(pl.LightningModule):
         negative_sim = sim_full.sum(dim=1)
         loss = -torch.log(positive_sim / negative_sim)
         loss = loss.mean()
-        print('loss', loss)
         return loss
 
     def training_step(self, batch: Data, batch_idx: int) -> dict:

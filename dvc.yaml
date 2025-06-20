@@ -21,13 +21,14 @@ stages:
     params:
       - wikics.train_stage
     outs:
-      - models/gca_${wikics.train_stage.input_dim}_${wikics.train_stage.version}.pt
+      - models/gca_${wikics.train_stage.output_dim}_${wikics.train_stage.version}.pt:
+          cache: false
   embed:
     cmd: > 
-      python -u scripts/embed_gca_base.py 
+      python -u scripts/produce_embedings_gca_base.py 
     deps:
-      - scripts/embed_gca_base.py
-      - models/gca_${wikics.train_stage.input_dim}_${wikics.train_stage.version}.pt
+      - scripts/produce_embedings_gca_base.py
+      - models/gca_${wikics.train_stage.output_dim}_${wikics.train_stage.version}.pt
       - data/WikiCS/processed/data_undirected.pt
       - data/WikiCS/processed/pre_filter.pt
       - data/WikiCS/processed/pre_transform.pt
@@ -35,5 +36,5 @@ stages:
     params:
       - wikics.embed_stage
     outs:
-      - ./data/embeddings/gca_${wikics.embed_stage.input_dim}_${wikics.embed_stage.version}.pt
-        cache: false
+      - data/embeddings/node_embeddings_gca_${wikics.embed_stage.output_dim}_${wikics.embed_stage.version}.pt:
+          cache: false

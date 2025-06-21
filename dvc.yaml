@@ -45,3 +45,17 @@ stages:
       outs:
         - data/embeddings/node_embeddings_gca_${item.encoder}_${item.output_dim}_${item.version}.pt:
             cache: false
+  fit_gmm:
+    foreach: ${wikics.fit_gmm_stage}
+    do:
+      cmd: > 
+        python -u scripts/fit_gmm.py 
+        --config ${key}
+      deps:
+        - scripts/fit_gmm.py
+        - ${item.input}
+      params:
+        - wikics.fit_gmm_stage.${key}
+      outs:
+        - models/gmm/gmm_${item.encoder}_${item.dim}_${item.version}.pt:
+            cache: false

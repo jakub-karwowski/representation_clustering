@@ -891,3 +891,31 @@ stages:
       hash: md5
       md5: 8080171177cf7344472b7381a4843974
       size: 188554
+  fit_gmm@fit_gmm_stage_model_0:
+    cmd: "python -u scripts/fit_gmm.py  --config fit_gmm_stage_model_0\n"
+    deps:
+    - path: data/embeddings/node_embeddings_gca_gate_4_1.0.pt
+      hash: md5
+      md5: aaf7a84a97cf1b876341733a5a2c2a7f
+      size: 188559
+    - path: scripts/fit_gmm.py
+      hash: md5
+      md5: 75d0973b8e70acc95f84129dda89d59e
+      size: 2608
+    params:
+      params.yaml:
+        wikics.fit_gmm_stage.fit_gmm_stage_model_0:
+          model: diy
+          input_type: embeddings
+          input: data/embeddings/node_embeddings_gca_gate_4_1.0.pt
+          encoder: gate
+          dim: 4
+          seed: 13
+          tol: 1e-08
+          max_epochs: 50
+          version: 1.0
+    outs:
+    - path: models/gmm/gmm_gate_4_1.0.pt
+      hash: md5
+      md5: 8e2a4b5cdc79f5c40a1951b8cf8e73b9
+      size: 2565

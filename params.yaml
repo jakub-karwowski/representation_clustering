@@ -151,3 +151,15 @@ wikics:
       hidden_dim: 256
       output_dim: 4
       version: 1.0
+  fit_gmm_stage:
+    fit_gmm_stage_model_0:
+      model: diy
+      input_type: embeddings
+      input: data/embeddings/node_embeddings_gca_gate_4_1.0.pt
+      encoder: gate
+      dim: 4
+      seed: 13
+      tol: 1e-8
+      max_epochs: 50
+      version: 1.0
+

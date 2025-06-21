@@ -7,6 +7,7 @@ import yaml
 from pathlib import Path
 import yaml
 import argparse
+from pytorch_lightning.callbacks import EarlyStopping
 
 def main():
     sys.path.append(str(Path(__file__).resolve().parent.parent))
@@ -56,6 +57,14 @@ def main():
         log_every_n_steps=1,
         check_val_every_n_epoch=1,
         num_sanity_val_steps=0,
+        callbacks=[
+            EarlyStopping(
+                monitor="train/loss",   
+                min_delta=1e-8,         
+                patience=15,             
+                verbose=True,
+                mode="min"             
+        )]
     )
 
     datamodule = get_dataset_lightning_data('WikiCS')

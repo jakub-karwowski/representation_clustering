@@ -101,3 +101,793 @@ stages:
       hash: md5
       md5: 44fdbc943cb61e2e754cccac92489c1e
       size: 5992256
+  train@train_stage_model_0:
+    cmd: "python -u scripts/train_gca_base.py  --config train_stage_model_0\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: scripts/train_gca_base.py
+      hash: md5
+      md5: c7c29b85f1cb75607953828955a34d0c
+      size: 2301
+    params:
+      params.yaml:
+        wikics.train_stage.train_stage_model_0:
+          encoder: gate
+          lr: 0.01
+          weight_decay: 0.0005
+          max_epochs: 200
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 128
+          version: 1.0
+    outs:
+    - path: models/gca_gate_128_1.0.pt
+      hash: md5
+      md5: 403f58df2f2116a2aaef62377fc8df0d
+      size: 451784
+  train@train_stage_model_1:
+    cmd: "python -u scripts/train_gca_base.py  --config train_stage_model_1\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: scripts/train_gca_base.py
+      hash: md5
+      md5: c7c29b85f1cb75607953828955a34d0c
+      size: 2301
+    params:
+      params.yaml:
+        wikics.train_stage.train_stage_model_1:
+          encoder: gate
+          lr: 0.01
+          weight_decay: 0.0005
+          max_epochs: 200
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 256
+          version: 1.0
+    outs:
+    - path: models/gca_gate_256_1.0.pt
+      hash: md5
+      md5: c66dd35dafaaa3e2fc55f0ad816421ee
+      size: 584392
+  train@train_stage_model_2:
+    cmd: "python -u scripts/train_gca_base.py  --config train_stage_model_2\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: scripts/train_gca_base.py
+      hash: md5
+      md5: c7c29b85f1cb75607953828955a34d0c
+      size: 2301
+    params:
+      params.yaml:
+        wikics.train_stage.train_stage_model_2:
+          encoder: gate
+          lr: 0.01
+          weight_decay: 0.0005
+          max_epochs: 200
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 64
+          version: 1.0
+    outs:
+    - path: models/gca_gate_64_1.0.pt
+      hash: md5
+      md5: 063d3bce3fe14f220673e1107498430d
+      size: 385463
+  train@train_stage_model_3:
+    cmd: "python -u scripts/train_gca_base.py  --config train_stage_model_3\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: scripts/train_gca_base.py
+      hash: md5
+      md5: c7c29b85f1cb75607953828955a34d0c
+      size: 2301
+    params:
+      params.yaml:
+        wikics.train_stage.train_stage_model_3:
+          encoder: gcn
+          lr: 0.01
+          weight_decay: 0.0005
+          max_epochs: 200
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 128
+          version: 1.0
+    outs:
+    - path: models/gca_gcn_128_1.0.pt
+      hash: md5
+      md5: 4b084400a7bce22cb3778b65201906ed
+      size: 447588
+  train@train_stage_model_4:
+    cmd: "python -u scripts/train_gca_base.py  --config train_stage_model_4\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: scripts/train_gca_base.py
+      hash: md5
+      md5: c7c29b85f1cb75607953828955a34d0c
+      size: 2301
+    params:
+      params.yaml:
+        wikics.train_stage.train_stage_model_4:
+          encoder: gcn
+          lr: 0.01
+          weight_decay: 0.0005
+          max_epochs: 200
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 256
+          version: 1.0
+    outs:
+    - path: models/gca_gcn_256_1.0.pt
+      hash: md5
+      md5: 2688edab89eba4593cb85d110f7e481d
+      size: 579172
+  train@train_stage_model_5:
+    cmd: "python -u scripts/train_gca_base.py  --config train_stage_model_5\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: scripts/train_gca_base.py
+      hash: md5
+      md5: c7c29b85f1cb75607953828955a34d0c
+      size: 2301
+    params:
+      params.yaml:
+        wikics.train_stage.train_stage_model_5:
+          encoder: gcn
+          lr: 0.01
+          weight_decay: 0.0005
+          max_epochs: 200
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 64
+          version: 1.0
+    outs:
+    - path: models/gca_gcn_64_1.0.pt
+      hash: md5
+      md5: cceef09fa71ac3c8fc5611a305222cee
+      size: 381783
+  embed@embed_stage_model_0:
+    cmd: "python -u scripts/produce_embedings_gca_base.py  --config embed_stage_model_0\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: models/gca_gate_128_1.0.pt
+      hash: md5
+      md5: 403f58df2f2116a2aaef62377fc8df0d
+      size: 451784
+    - path: scripts/produce_embedings_gca_base.py
+      hash: md5
+      md5: 5b723d0f8b8508748072160112dde058
+      size: 1687
+    params:
+      params.yaml:
+        wikics.embed_stage.embed_stage_model_0:
+          encoder: gate
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 128
+          version: 1.0
+    outs:
+    - path: data/embeddings/node_embeddings_gca_gate_128_1.0.pt
+      hash: md5
+      md5: edf5bc6ce496616e0a5890c7591fd93e
+      size: 5992281
+  embed@embed_stage_model_1:
+    cmd: "python -u scripts/produce_embedings_gca_base.py  --config embed_stage_model_1\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: models/gca_gate_256_1.0.pt
+      hash: md5
+      md5: c66dd35dafaaa3e2fc55f0ad816421ee
+      size: 584392
+    - path: scripts/produce_embedings_gca_base.py
+      hash: md5
+      md5: 5b723d0f8b8508748072160112dde058
+      size: 1687
+    params:
+      params.yaml:
+        wikics.embed_stage.embed_stage_model_1:
+          encoder: gate
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 256
+          version: 1.0
+    outs:
+    - path: data/embeddings/node_embeddings_gca_gate_256_1.0.pt
+      hash: md5
+      md5: 0166fb345be96557cc50131d7ad10e4c
+      size: 11983193
+  embed@embed_stage_model_2:
+    cmd: "python -u scripts/produce_embedings_gca_base.py  --config embed_stage_model_2\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: models/gca_gate_64_1.0.pt
+      hash: md5
+      md5: 063d3bce3fe14f220673e1107498430d
+      size: 385463
+    - path: scripts/produce_embedings_gca_base.py
+      hash: md5
+      md5: 5b723d0f8b8508748072160112dde058
+      size: 1687
+    params:
+      params.yaml:
+        wikics.embed_stage.embed_stage_model_2:
+          encoder: gate
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 64
+          version: 1.0
+    outs:
+    - path: data/embeddings/node_embeddings_gca_gate_64_1.0.pt
+      hash: md5
+      md5: d8067b32d24253114ff4ed30847423cb
+      size: 2996820
+  embed@embed_stage_model_3:
+    cmd: "python -u scripts/produce_embedings_gca_base.py  --config embed_stage_model_3\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: models/gca_gcn_128_1.0.pt
+      hash: md5
+      md5: 4b084400a7bce22cb3778b65201906ed
+      size: 447588
+    - path: scripts/produce_embedings_gca_base.py
+      hash: md5
+      md5: 5b723d0f8b8508748072160112dde058
+      size: 1687
+    params:
+      params.yaml:
+        wikics.embed_stage.embed_stage_model_3:
+          encoder: gcn
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 128
+          version: 1.0
+    outs:
+    - path: data/embeddings/node_embeddings_gca_gcn_128_1.0.pt
+      hash: md5
+      md5: 74184e33b1928a22f6c511cddc165c0b
+      size: 5992276
+  embed@embed_stage_model_4:
+    cmd: "python -u scripts/produce_embedings_gca_base.py  --config embed_stage_model_4\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: models/gca_gcn_256_1.0.pt
+      hash: md5
+      md5: 2688edab89eba4593cb85d110f7e481d
+      size: 579172
+    - path: scripts/produce_embedings_gca_base.py
+      hash: md5
+      md5: 5b723d0f8b8508748072160112dde058
+      size: 1687
+    params:
+      params.yaml:
+        wikics.embed_stage.embed_stage_model_4:
+          encoder: gcn
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 256
+          version: 1.0
+    outs:
+    - path: data/embeddings/node_embeddings_gca_gcn_256_1.0.pt
+      hash: md5
+      md5: ea01a8cd552889a2f726009b59f13181
+      size: 11983188
+  embed@embed_stage_model_5:
+    cmd: "python -u scripts/produce_embedings_gca_base.py  --config embed_stage_model_5\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: models/gca_gcn_64_1.0.pt
+      hash: md5
+      md5: cceef09fa71ac3c8fc5611a305222cee
+      size: 381783
+    - path: scripts/produce_embedings_gca_base.py
+      hash: md5
+      md5: 5b723d0f8b8508748072160112dde058
+      size: 1687
+    params:
+      params.yaml:
+        wikics.embed_stage.embed_stage_model_5:
+          encoder: gcn
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 64
+          version: 1.0
+    outs:
+    - path: data/embeddings/node_embeddings_gca_gcn_64_1.0.pt
+      hash: md5
+      md5: bff7c8ebc9ad117404d7c7ff327eed13
+      size: 2996815
+  train@train_stage_model_6:
+    cmd: "python -u scripts/train_gca_base.py  --config train_stage_model_6\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: scripts/train_gca_base.py
+      hash: md5
+      md5: c7c29b85f1cb75607953828955a34d0c
+      size: 2301
+    params:
+      params.yaml:
+        wikics.train_stage.train_stage_model_6:
+          encoder: gate
+          lr: 0.01
+          weight_decay: 0.0005
+          max_epochs: 200
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 16
+          version: 1.0
+    outs:
+    - path: models/gca_gate_16_1.0.pt
+      hash: md5
+      md5: d0b1565ca3bc733b641ba15936fd14c9
+      size: 335735
+  train@train_stage_model_7:
+    cmd: "python -u scripts/train_gca_base.py  --config train_stage_model_7\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: scripts/train_gca_base.py
+      hash: md5
+      md5: c7c29b85f1cb75607953828955a34d0c
+      size: 2301
+    params:
+      params.yaml:
+        wikics.train_stage.train_stage_model_7:
+          encoder: gcn
+          lr: 0.01
+          weight_decay: 0.0005
+          max_epochs: 200
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 16
+          version: 1.0
+    outs:
+    - path: models/gca_gcn_16_1.0.pt
+      hash: md5
+      md5: 0e0372826d886c79cbb2d538c251568d
+      size: 332439
+  embed@embed_stage_model_6:
+    cmd: "python -u scripts/produce_embedings_gca_base.py  --config embed_stage_model_6\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: models/gca_gate_16_1.0.pt
+      hash: md5
+      md5: d0b1565ca3bc733b641ba15936fd14c9
+      size: 335735
+    - path: scripts/produce_embedings_gca_base.py
+      hash: md5
+      md5: 5b723d0f8b8508748072160112dde058
+      size: 1687
+    params:
+      params.yaml:
+        wikics.embed_stage.embed_stage_model_6:
+          encoder: gate
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 16
+          version: 1.0
+    outs:
+    - path: data/embeddings/node_embeddings_gca_gate_16_1.0.pt
+      hash: md5
+      md5: 9cb1f915abf9177adb60b0b5a4bd1b8d
+      size: 750228
+  embed@embed_stage_model_7:
+    cmd: "python -u scripts/produce_embedings_gca_base.py  --config embed_stage_model_7\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: models/gca_gcn_16_1.0.pt
+      hash: md5
+      md5: 0e0372826d886c79cbb2d538c251568d
+      size: 332439
+    - path: scripts/produce_embedings_gca_base.py
+      hash: md5
+      md5: 5b723d0f8b8508748072160112dde058
+      size: 1687
+    params:
+      params.yaml:
+        wikics.embed_stage.embed_stage_model_7:
+          encoder: gcn
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 16
+          version: 1.0
+    outs:
+    - path: data/embeddings/node_embeddings_gca_gcn_16_1.0.pt
+      hash: md5
+      md5: 17836ac579a7134867849c8432257aba
+      size: 750223
+  train@train_stage_model_8:
+    cmd: "python -u scripts/train_gca_base.py  --config train_stage_model_8\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: scripts/train_gca_base.py
+      hash: md5
+      md5: c7c29b85f1cb75607953828955a34d0c
+      size: 2301
+    params:
+      params.yaml:
+        wikics.train_stage.train_stage_model_8:
+          encoder: gate
+          lr: 0.01
+          weight_decay: 0.0005
+          max_epochs: 200
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 4
+          version: 1.0
+    outs:
+    - path: models/gca_gate_4_1.0.pt
+      hash: md5
+      md5: 6caedf6e16b3dcfcb0555cc8b4a34bda
+      size: 323238
+  train@train_stage_model_9:
+    cmd: "python -u scripts/train_gca_base.py  --config train_stage_model_9\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: scripts/train_gca_base.py
+      hash: md5
+      md5: c7c29b85f1cb75607953828955a34d0c
+      size: 2301
+    params:
+      params.yaml:
+        wikics.train_stage.train_stage_model_9:
+          encoder: gcn
+          lr: 0.01
+          weight_decay: 0.0005
+          max_epochs: 200
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 4
+          version: 1.0
+    outs:
+    - path: models/gca_gcn_4_1.0.pt
+      hash: md5
+      md5: 79de023d6b87a7d775f2644d560fdb6e
+      size: 320074
+  embed@embed_stage_model_8:
+    cmd: "python -u scripts/produce_embedings_gca_base.py  --config embed_stage_model_8\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: models/gca_gate_4_1.0.pt
+      hash: md5
+      md5: 6caedf6e16b3dcfcb0555cc8b4a34bda
+      size: 323238
+    - path: scripts/produce_embedings_gca_base.py
+      hash: md5
+      md5: 5b723d0f8b8508748072160112dde058
+      size: 1687
+    params:
+      params.yaml:
+        wikics.embed_stage.embed_stage_model_8:
+          encoder: gate
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 4
+          version: 1.0
+    outs:
+    - path: data/embeddings/node_embeddings_gca_gate_4_1.0.pt
+      hash: md5
+      md5: aaf7a84a97cf1b876341733a5a2c2a7f
+      size: 188559
+  embed@embed_stage_model_9:
+    cmd: "python -u scripts/produce_embedings_gca_base.py  --config embed_stage_model_9\n"
+    deps:
+    - path: data/WikiCS/processed/data_undirected.pt
+      hash: md5
+      md5: 11dee51e30b452d5a64a22e55d642cc1
+      size: 21758724
+    - path: data/WikiCS/processed/pre_filter.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/processed/pre_transform.pt
+      hash: md5
+      md5: 4bf6b4e4c38160b8add42f11e4d1ea1b
+      size: 864
+    - path: data/WikiCS/raw/data.json
+      hash: md5
+      md5: f1a0a126afd0ed8891b29b784cd4523b
+      size: 82533647
+    - path: models/gca_gcn_4_1.0.pt
+      hash: md5
+      md5: 79de023d6b87a7d775f2644d560fdb6e
+      size: 320074
+    - path: scripts/produce_embedings_gca_base.py
+      hash: md5
+      md5: 5b723d0f8b8508748072160112dde058
+      size: 1687
+    params:
+      params.yaml:
+        wikics.embed_stage.embed_stage_model_9:
+          encoder: gcn
+          input_dim: 300
+          hidden_dim: 256
+          output_dim: 4
+          version: 1.0
+    outs:
+    - path: data/embeddings/node_embeddings_gca_gcn_4_1.0.pt
+      hash: md5
+      md5: 8080171177cf7344472b7381a4843974
+      size: 188554

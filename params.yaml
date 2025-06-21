@@ -4,7 +4,7 @@ wikics:
       encoder: gate
       lr: 0.01
       weight_decay: 5e-4
-      max_epochs: 50
+      max_epochs: 200
       input_dim: 300
       hidden_dim: 256
       output_dim: 128
@@ -13,7 +13,7 @@ wikics:
       encoder: gate
       lr: 0.01
       weight_decay: 5e-4
-      max_epochs: 50
+      max_epochs: 200
       input_dim: 300
       hidden_dim: 256
       output_dim: 256
@@ -22,7 +22,7 @@ wikics:
       encoder: gate
       lr: 0.01
       weight_decay: 5e-4
-      max_epochs: 50
+      max_epochs: 200
       input_dim: 300
       hidden_dim: 256
       output_dim: 64
@@ -31,7 +31,7 @@ wikics:
       encoder: gcn
       lr: 0.01
       weight_decay: 5e-4
-      max_epochs: 50
+      max_epochs: 200
       input_dim: 300
       hidden_dim: 256
       output_dim: 128
@@ -40,7 +40,7 @@ wikics:
       encoder: gcn
       lr: 0.01
       weight_decay: 5e-4
-      max_epochs: 50
+      max_epochs: 200
       input_dim: 300
       hidden_dim: 256
       output_dim: 256
@@ -49,10 +49,46 @@ wikics:
       encoder: gcn
       lr: 0.01
       weight_decay: 5e-4
-      max_epochs: 50
+      max_epochs: 200
       input_dim: 300
       hidden_dim: 256
       output_dim: 64
+      version: 1.0
+    train_stage_model_6:
+      encoder: gate
+      lr: 0.01
+      weight_decay: 5e-4
+      max_epochs: 200
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 16
+      version: 1.0
+    train_stage_model_7:
+      encoder: gcn
+      lr: 0.01
+      weight_decay: 5e-4
+      max_epochs: 200
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 16
+      version: 1.0
+    train_stage_model_8:
+      encoder: gate
+      lr: 0.01
+      weight_decay: 5e-4
+      max_epochs: 200
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 4
+      version: 1.0
+    train_stage_model_9:
+      encoder: gcn
+      lr: 0.01
+      weight_decay: 5e-4
+      max_epochs: 200
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 4
       version: 1.0
   embed_stage:
     embed_stage_model_0:
@@ -90,4 +126,28 @@ wikics:
       input_dim: 300
       hidden_dim: 256
       output_dim: 64
+      version: 1.0
+    embed_stage_model_6:
+      encoder: gate
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 16
+      version: 1.0
+    embed_stage_model_7:
+      encoder: gcn
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 16
+      version: 1.0
+    embed_stage_model_8:
+      encoder: gate
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 4
+      version: 1.0
+    embed_stage_model_9:
+      encoder: gcn
+      input_dim: 300
+      hidden_dim: 256
+      output_dim: 4
       version: 1.0

@@ -11,16 +11,19 @@ class GaussianMixtureModel(pl.LightningModule):
     def __init__(
         self,
         n_components: int,
-        dim: int
+        dim: int,
+        smoothing: float|None = 1e-8
     ):
         """Inicjalizacja modelu mikstur gausowskich.
 
         :param n_components: liczba komponentów modelu
-        :param n_epochs: liczba epok trenowania modelu
+        :param dim: długość wektora danych
+        :param smoothing: mała stała albo None (bez wygładzania)
         """
         super().__init__()
         self.n_components = n_components
         self.dim = dim
+        self.smoothing = smoothing
 
         self.means = nn.Parameter(torch.rand(
             (self.n_components, self.dim)), requires_grad=False)
@@ -38,8 +41,7 @@ class GaussianMixtureModel(pl.LightningModule):
     def gamma_top(self, x: torch.Tensor) -> torch.Tensor:
         n_points = x.shape[0]
         # https://stats.stackexchange.com/questions/390532/adding-a-small-constant-to-the-diagonals-of-a-matrix-to-stabilize
-        cov_reg = self.covariances + 1e-6 * \
-            torch.eye(self.dim, device=x.device).unsqueeze(0)
+        cov_reg = self.covariances + 1e-6 * torch.eye(self.dim, device=x.device).unsqueeze(0)
         xs = torch.reshape(x, (1, n_points, self.dim, 1))
         mus = torch.reshape(self.means, (self.n_components, 1, self.dim, 1))
         Sigmas = torch.reshape(
@@ -59,6 +61,8 @@ class GaussianMixtureModel(pl.LightningModule):
         log_pxy = log_bottom - 0.5 * log_top
         log_pyx = log_py + log_pxy
         p_yx = torch.exp(log_pyx)
+        if not self.smoothing is None:
+            p_yx = torch.nan_to_num(p_yx) + self.smoothing
         return p_yx
 
     @torch.no_grad()

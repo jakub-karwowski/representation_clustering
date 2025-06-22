@@ -159,7 +159,7 @@ wikics:
       encoder: gate
       dim: 4
       seed: 13
-      tol: 1e-8
+      tol: 1e-3
       max_epochs: 50
       version: 1.0
 

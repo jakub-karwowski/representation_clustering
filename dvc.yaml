@@ -53,6 +53,7 @@ stages:
         --config ${key}
       deps:
         - scripts/fit_gmm.py
+        - src/gmm.py
         - ${item.input}
       params:
         - wikics.fit_gmm_stage.${key}

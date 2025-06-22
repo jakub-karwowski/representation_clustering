@@ -902,6 +902,10 @@ stages:
       hash: md5
       md5: 75d0973b8e70acc95f84129dda89d59e
       size: 2608
+    - path: src/gmm.py
+      hash: md5
+      md5: e6cf374f3c0e89968e9e39ff845891fc
+      size: 5264
     params:
       params.yaml:
         wikics.fit_gmm_stage.fit_gmm_stage_model_0:
@@ -911,11 +915,11 @@ stages:
           encoder: gate
           dim: 4
           seed: 13
-          tol: 1e-08
+          tol: 0.001
           max_epochs: 50
           version: 1.0
     outs:
     - path: models/gmm/gmm_gate_4_1.0.pt
       hash: md5
-      md5: 8e2a4b5cdc79f5c40a1951b8cf8e73b9
+      md5: 5601a7b16e07eb4980c577fe088597b2
       size: 2565

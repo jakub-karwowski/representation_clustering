@@ -11,8 +11,7 @@ class GaussianMixtureModel(pl.LightningModule):
     def __init__(
         self,
         n_components: int,
-        dim: int,
-        super_smooth: bool = False,
+        dim: int
     ):
         """Inicjalizacja modelu mikstur gausowskich.
 
@@ -22,7 +21,6 @@ class GaussianMixtureModel(pl.LightningModule):
         super().__init__()
         self.n_components = n_components
         self.dim = dim
-        self.super_smooth = super_smooth
 
         self.means = nn.Parameter(torch.rand(
             (self.n_components, self.dim)), requires_grad=False)
@@ -60,13 +58,7 @@ class GaussianMixtureModel(pl.LightningModule):
         log_bottom = (-0.5 * (self.dim * math.log(2 * math.pi) + log_det))
         log_pxy = log_bottom - 0.5 * log_top
         log_pyx = log_py + log_pxy
-        # Normalize probabilities
-        # - torch.logsumexp(log_pyx, dim=0, keepdim=True)
-        if self.super_smooth:
-            p_yx = torch.exp(
-                log_pyx - torch.logsumexp(log_pyx, dim=0, keepdim=True))
-        else:
-            p_yx = torch.exp(log_pyx)
+        p_yx = torch.exp(log_pyx)
         return p_yx
 
     @torch.no_grad()

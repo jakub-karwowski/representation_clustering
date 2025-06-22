@@ -5,6 +5,7 @@ import pytorch_lightning as pl
 from pytorch_lightning.callbacks import EarlyStopping
 import torch.nn as nn
 import math
+import logging
 
 
 class GaussianMixtureModel(pl.LightningModule):
@@ -111,29 +112,58 @@ class GaussianMixtureModel(pl.LightningModule):
 
     def configure_optimizers(self):
         return None
+    
+    def sample(self, n_samples: int, seed: int) -> torch.Tensor:
+        torch.manual_seed(seed)
+        components = torch.multinomial(self.mixing_coefs, num_samples=n_samples, replacement=True)
+        return torch.normal(mean=self.means.data[components], std=self.means.data[components], size=(n_samples, self.dim))
+
+    def sample_from_component(self, component: int, n_samples: int, seed: int) -> torch.Tensor:
+        torch.manual_seed(seed)
+        return torch.normal(mean=self.means.data[component], std=self.means.data[component], size=(n_samples, self.dim))
 
 
-def get_gmm_trainer(model_name: str, max_epochs: int, patience: int = 1, termination_threshold: float = 1e-3, accelerator: str = "gpu"):
+def get_gmm_trainer(model_name: str, max_epochs: int, patience: int = 1, termination_threshold: float = 1e-3, accelerator: str = "gpu", verbose: bool = True):
     p = str(Path(__file__).resolve().parent.parent / "data" / "gmm-logs")
-    return pl.Trainer(
-        max_epochs=max_epochs,
-        accelerator=accelerator,
-        logger=pl.loggers.TensorBoardLogger(
-            save_dir=p,
-            name=model_name,
-        ),
-        log_every_n_steps=1,
-        check_val_every_n_epoch=1,
-        num_sanity_val_steps=0,
-        callbacks=[
-            EarlyStopping(
-                monitor="log-likelihood",
-                min_delta=termination_threshold,
-                patience=patience,
-                verbose=True,
-                mode="max"
-            )]
-    )
+    if verbose:
+        return pl.Trainer(
+            max_epochs=max_epochs,
+            accelerator=accelerator,
+            logger=pl.loggers.TensorBoardLogger(
+                save_dir=p,
+                name=model_name,
+            ),
+            log_every_n_steps=1,
+            check_val_every_n_epoch=1,
+            num_sanity_val_steps=0,
+            callbacks=[
+                EarlyStopping(
+                    monitor="log-likelihood",
+                    min_delta=termination_threshold,
+                    patience=patience,
+                    verbose=True,
+                    mode="max"
+                )]
+        )
+    else:
+        logging.getLogger("pytorch_lightning").setLevel(logging.WARNING)
+        return pl.Trainer(
+            max_epochs=max_epochs,
+            accelerator=accelerator,
+            logger=False,
+            log_every_n_steps=-1,
+            check_val_every_n_epoch=-1,
+            enable_model_summary=False,
+            enable_progress_bar=False,
+            callbacks=[
+                EarlyStopping(
+                    monitor="log-likelihood",
+                    min_delta=termination_threshold,
+                    patience=patience,
+                    verbose=False,
+                    mode="max"
+                )]
+        )
 
 
 class WholeTensorDataset(torch.utils.data.Dataset):

@@ -27,7 +27,7 @@ def main():
         params = yaml.safe_load(f)['wikics']['fit_gmm_stage'][args.config]
 
     SEED = int(params['seed'])
-    ACCELERATOR = 'cpu'
+    ACCELERATOR = 'gpu'
 
     if params['input_type'] == 'raw':
         p = str(

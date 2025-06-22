@@ -158,7 +158,7 @@ wikics:
       input: data/embeddings/node_embeddings_gca_gate_4_1.0.pt
       encoder: gate
       dim: 4
-      seed: 13
+      seed: 12
       tol: 1e-3
       max_epochs: 50
       version: 1.0
